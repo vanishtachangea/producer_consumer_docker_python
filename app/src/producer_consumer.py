@@ -11,7 +11,7 @@ to the disk or network, without using any threads
 async def produce(queue, n):
     for x in range(1, n + 1):
         # Generate a name
-        name = "name"+str(x)
+        name = "Name"+str(x)
         print(name)
          # put the name in the queue
         await queue.put(name) 
