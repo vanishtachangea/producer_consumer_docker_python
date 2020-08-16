@@ -1,0 +1,4 @@
+Flask==1.1.1
+pytest
+# debugging only
+# ptvsd==4.3.2
