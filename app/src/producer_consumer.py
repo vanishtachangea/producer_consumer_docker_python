@@ -28,19 +28,39 @@ async def consume(queue):
     while True:
         # wait for a name from the producer
         name = await queue.get()
-        if name is None:
-            # the producer emits None if it is done
-            break
 
+        # the producer emits None if it is done
+        if name is None:           
+            break
         # process the name
-        print('Hello {}...'.format(name))
+        output('hello {}...'.format(name))
         # simulate i/o operation using sleep
         await asyncio.sleep(random.random())
-    print('Consumer is Done')
+    output('Consumer is Done')
 
+async def consume2(queue):
+    while True:
+        # wait for a name from the producer
+        name = await queue.get()
+
+        # the producer emits None if it is done
+        if name is None:            
+            break
+        # process the name
+        print('goodbye {}...'.format(name))
+        # simulate i/o operation using sleep
+        await asyncio.sleep(random.random())
+    print('Consumer2 is Done')
+
+def output(message):
+    print(message)
+    return
+
+'''
 loop = asyncio.get_event_loop()
 queue = asyncio.Queue(loop=loop)
 producer_coro = produce(queue, 10)
 consumer_coro = consume(queue)
 loop.run_until_complete(asyncio.gather(producer_coro, consumer_coro))
 loop.close()
+'''
