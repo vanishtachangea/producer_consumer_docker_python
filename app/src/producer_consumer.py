@@ -1,17 +1,25 @@
 import asyncio
 import random
-
+"""
+Asyncio Asyncio is used for coding asynchronous tasks e.g.Produce and Consume Tasks 
+It allows concurrency, on a single thread
+asyncio is really good for IO bound stuff and 
+allows us to support thousands of read and write operations 
+to the disk or network, without using any threads
+"""
 
 async def produce(queue, n):
     for x in range(1, n + 1):
-        # produce an item
-        print('Name{}'.format(x, n))
+        # Generate a name
+        name = "name"+str(x)
+        print(name)
+         # put the name in the queue
+        await queue.put(name) 
+
         # simulate i/o operation using sleep
         await asyncio.sleep(random.random())
-        name = "name"+str(x)
-        # put the name in the queue
-        await queue.put(name)
-
+        
+    print('Producer is Done')
     # indicate the producer is done
     await queue.put(None)
 
@@ -28,7 +36,7 @@ async def consume(queue):
         print('Hello {}...'.format(name))
         # simulate i/o operation using sleep
         await asyncio.sleep(random.random())
-
+    print('Consumer is Done')
 
 loop = asyncio.get_event_loop()
 queue = asyncio.Queue(loop=loop)
