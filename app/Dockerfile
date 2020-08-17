@@ -3,5 +3,5 @@ WORKDIR /src
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./src /src
-CMD python producer_consumer.py
-CMD pytest producer_consumer_test.py 
+RUN ["chmod", "+x", "./commands.sh"]
+ENTRYPOINT ["sh","./commands.sh"]

@@ -3,4 +3,5 @@ WORKDIR /src
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./src /src
-CMD python producer.py
+RUN ["chmod", "+x", "./commands.sh"]
+ENTRYPOINT ["sh","./commands.sh"]

@@ -1,56 +1,77 @@
 import asyncio
 import random
-"""
-Asyncio Asyncio is used for coding asynchronous tasks e.g.Produce and Consume Tasks 
-It allows concurrency, on a single thread
-asyncio is really good for IO bound stuff and 
-allows us to support thousands of read and write operations 
-to the disk or network, without using any threads
-"""
+import logging
+
 
 async def produce(queue, n):
-    for x in range(1, n + 1):
-        # Generate a name
-        name = "Name"+str(x)
-        print(name)
-         # put the name in the queue
-        await queue.put(name) 
+    '''Asyncio Asyncio is used for coding asynchronous tasks e.g.Produce and Consume Tasks 
+    It allows concurrency, on a single thread
+    asyncio is really good for IO bound stuff and 
+    allows us to support thousands of read and write operations 
+    to the disk or network, without using any threads   
+    Produce 
+    A producer provide a Name which is stored in an asyncio queue. 
+    Attributes: 
+        queue (asyncio queue): The asyncio queue
+        n (int): Number of time the Produce will loop to produce a name
+    '''
+    try:
+        for x in range(1, n + 1):
+            # Generate a name
+            name = "Name"+str(x)
+            print(name)
+            # put the name in the queue
+            await queue.put(name) 
 
-        # simulate i/o operation using sleep
-        await asyncio.sleep(random.random())
-        
-    print('Producer is Done')
-    # indicate the producer is done
-    await queue.put(None)
-
+            # simulate i/o operation using sleep
+            await asyncio.sleep(random.random())
+            
+        print('Producer is Done')
+        # indicate the producer is done
+        # print(produce.__doc__) 
+        # print(produce) 
+        await queue.put(None)
+    except:
+        logging.error(sys.exc_info()[0], "occurred.")
 
 async def consume(queue):
-    while True:
-        # wait for a name from the producer
-        name = await queue.get()
-
-        # the producer emits None if it is done
-        if name is None:           
-            break
-        # process the name
-        output('hello {}...'.format(name))
-        # simulate i/o operation using sleep
-        await asyncio.sleep(random.random())
-    output('Consumer is Done')
+    '''
+    consume 
+    A consumer function gets the name from asyncio queue and print "Hello <Name>"
+    Attributes: 
+        queue (asyncio queue): The asyncio queue
+    '''
+    try:
+        while True:
+            # wait for a name from the producer
+            name = await queue.get()
+            # the producer emits None if it is done
+            if name is None:           
+                break
+            # process the name
+            output('hello {}...'.format(name))
+            # simulate i/o operation using sleep
+            await asyncio.sleep(random.random())
+        output('Consumer is Done')
+    except:
+        logging.error(sys.exc_info()[0], "occurred.")
 
 async def consume2(queue):
-    while True:
-        # wait for a name from the producer
-        name = await queue.get()
+    try:
+        while True:
+            # wait for a name from the producer
+            name = await queue.get()
 
-        # the producer emits None if it is done
-        if name is None:            
-            break
-        # process the name
-        print('goodbye {}...'.format(name))
-        # simulate i/o operation using sleep
-        await asyncio.sleep(random.random())
-    print('Consumer2 is Done')
+            # the producer emits None if it is done
+            if name is None:            
+                break
+            # process the name
+            print('goodbye {}...'.format(name))
+            # simulate i/o operation using sleep
+            await asyncio.sleep(random.random())
+        print('Consumer2 is Done')
+    except:
+        logging.error(sys.exc_info()[0], "occurred.")
 
 def output(message):
     print(message)

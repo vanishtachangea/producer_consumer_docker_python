@@ -1,12 +1,7 @@
 Flask==1.1.1
 pytest==5.4.0
-asynctest==0.12.2
 pytest-asyncio==0.14.0
 pytest-mock==3.2.0
 pytest-trio==0.6.0
 pytest-tornasync==0.6.0
-asyncio==3.4.3
-async_timeout
-
-# debugging only
-# ptvsd==4.3.2
+kafka-python==2.0.1
