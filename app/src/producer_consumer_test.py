@@ -30,17 +30,21 @@ def mock_queue(event_loop):
 
 @pytest.mark.asyncio
 async def test_produce(event_loop, mock_queue):
-    await produce(mock_queue, 1)
+    producer_coro= await produce(mock_queue, 2)
     assert await mock_queue.get() == 'Name1'
-    #assert await mock_queue.get() == 'Name2'
+    assert await mock_queue.get() == 'Name2'
     assert await mock_queue.get() is None
+    
 '''
 @pytest.mark.asyncio
 async def test_consume(event_loop, mock_queue):
-    await produce(mock_queue, 2)
-    await consume(mock_queue)
+    producer_coro = await produce(mock_queue, 1)
+    consumer_coro = await consume(mock_queue)  
+    #event_loop.run_until_complete(asyncio.gather(producer_coro, consumer_coro))
+    #event_loop.close()
     assert await mock_queue.get() is None
 '''
+
 @pytest.fixture()
 async def queue_data():
     q = asyncio.Queue()
