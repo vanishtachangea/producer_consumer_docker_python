@@ -70,5 +70,4 @@ There is an issue that Kafka only matches the exact topic name, that means it do
 The Confluent Platform is a stream data platform that enables you to organize and manage the massive amounts of data
 - Use Amazon MSK : Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data. 
 # Conclusion
-
-For messaging, we could use RabbitMQ, But we could also use Kafka because Kafka is designed for holding and distributing large volumes of messages and is faster.
+For simple messaging workload, we could use asyncio or RabbitMQ. But complex distributed systems,we could also use Kafka because Kafka is designed for holding and distributing large volumes of messages and is faster.
