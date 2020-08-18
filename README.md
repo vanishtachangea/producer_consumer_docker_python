@@ -6,7 +6,19 @@ The project contains tests that prove the implementation works as intended.
 
 In addition to the “hello name” consumer, a separate consumer output "goodbye <NAME>".
 
+## Solutions Options
+There are 3 options 
+ 1. Asyncio
+ 2. RabbitMQ
+ 3. Kafka
+
+ All 3 solutions use a queue system. But the way the queue system is architected is very different. 
+
+
 ## Solution 1 - Using Asyncio 
+Asyncio uses one queue. The producer adds messages to the queue. The Consumer reads from the queue. 
+![](http://blogs.quovantis.com/wp-content/uploads/2015/09/Selection_010.png)
+
 
 ### How to run 
 - run the following commands
@@ -18,7 +30,9 @@ sudo docker-compose -f docker-compose.1.yaml up --build
 -- Standard, largely unavoidable overhead
 -- Situations where all consumers are sleeping when an item appears in the queue
 ### WorkAround 
-## Solution 2 - Using Kafka
+
+
+## Solution 3 for Distributed Systems - Using Kafka
 In Progress
 ### How to run 
 - run the following commands
@@ -34,12 +48,19 @@ There are numerous asynchronous messaging techniques:
     -   Queuing (One-to-one ) And Publish-subscribe(one-to-many): Both.
     -   Scale: Can send thousands of messages/second.
     -   Persistency: both persistent and transient messages are supported.
+
+In the case of RabbitMQ producer sends message to “EXCHANGE” and exchange pushes it to multiple queues and consumers get message from queues to which it has binded with.
+![](http://blogs.quovantis.com/wp-content/uploads/2015/09/Selection_009.png)
+
+
 ### Kafka:
     -   Queuing (One-to-one ) And Publish-subscribe(one-to-many): One-to-many.
     -   Scale: Can send millions of messages/second.
     -   Persistency: yes
 ## Kafka Details
 Kafka is a distributed messaging system.
+In the case of Kafka, the Producers send messages over many partitions/queues, on many machines/clusters. 
+
 #### Common use-cases: 
 
 - messaging between applications, where you can have applications "talk" to each using messages

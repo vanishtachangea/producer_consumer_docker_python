@@ -6,7 +6,7 @@ pytest-mock==3.2.0
 pytest-trio==0.6.0
 pytest-tornasync==0.6.0
 asyncio==3.4.3
-async_timeout
+async_timeout==3.0.1
 
 # debugging only
 # ptvsd==4.3.2
