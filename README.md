@@ -11,7 +11,7 @@ In addition to the “hello name” consumer, a separate consumer output "goodby
 ### How to run 
 - run the following commands
 ```
-sudo docker-compose up --build
+sudo docker-compose -f docker-compose.1.yaml up --build
 ```
 ### Downfalls
 - Delays:
@@ -20,6 +20,11 @@ sudo docker-compose up --build
 ### WorkAround 
 ## Solution 2 - Using Kafka
 In Progress
+### How to run 
+- run the following commands
+```
+sudo docker-compose -f docker-compose.yaml up --build
+```
 In a microservice architecture or distributed architecture, we should use message broker between 
 the producer and consumer. 
 There are numerous asynchronous messaging techniques:
