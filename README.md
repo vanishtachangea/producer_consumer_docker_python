@@ -50,11 +50,25 @@ Kafka is a distributed messaging system.
 *From [Confluent.io](https://www.confluent.io/blog/apache-kafka-for-service-architectures/)*
 ![](https://images.ctfassets.net/h6vh38q7qvzk/446ibu2GSQY886sasUwwOm/7864307b92b89afdb572d45fbc307f4a/backend.jpeg)
 
+### Advantages of Using Kafka
+- High-throughput
+- Low Latency
+- Fault-Tolerant
+- Durability
+- Scalabilit
+- Distributed
+- Message Broker Capabilities
+- High Concurrency
+
 ### Downfalls
 - Doesn’t possess a full set of management and monitoring tools. This makes enterprise support staff a bit apprehensive about choosing Kafka and supporting it in the long run.
-- The broker uses certain system calls to deliver messages to the consumer, but if the message needs some tweaking, doing so reduces Kafka’s performance significantly. If the message is unchanged, it can perform quite well, as it uses the ...
+- The broker uses certain system calls to deliver messages to the consumer, but if the message needs some tweaking, doing so reduces Kafka’s performance significantly. 
+- Not support wildcard topic selection
+There is an issue that Kafka only matches the exact topic name, that means it does not support wildcard topic selection. Because that makes it incapable of addressing certain use cases.
 ### WorkAround
-
+- Use Confluent : (https://docs.confluent.io/current/quickstart/ce-docker-quickstart.html)
+The Confluent Platform is a stream data platform that enables you to organize and manage the massive amounts of data
+- Use Amazon MSK : Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service that enables you to build and run applications that use Apache Kafka to process streaming data. 
 # Conclusion
 
 For messaging, we could use RabbitMQ, But we could also use Kafka because Kafka is designed for holding and distributing large volumes of messages and is faster.
